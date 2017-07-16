@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,8 @@ import ru.manytomany.model.Userevent;
 import ru.manytomany.model.Usertime;
 import ru.manytomany.service.EventService;
 import ru.manytomany.service.TimeService;
+
+import javax.validation.Valid;
 
 @Controller
 public class MainController {
@@ -40,7 +43,7 @@ public class MainController {
         return "index";
     }
     @RequestMapping(value = "/time/add", method = RequestMethod.GET)
-    public String addTime(@ModelAttribute("time")Usertime usertime){
+    public String addTime(@ModelAttribute Usertime usertime){
         if(usertime.getId()!=0) {
             timeService.updateTime(usertime);
         }else {
@@ -56,7 +59,14 @@ public class MainController {
         return "editTime";
     }
     @RequestMapping(value = "/event/add", method = RequestMethod.GET)
-    public String addEvent(@ModelAttribute("event")Userevent userevent){
+    public String addEvent(@ModelAttribute("event")Userevent userevent, BindingResult result, Model model){
+        if(result.hasErrors()){
+//            model.addAttribute("time", new Usertime());
+//            model.addAttribute("timelist", timeService.list());
+//            model.addAttribute("event", new Userevent());
+//            model.addAttribute("eventlist", eventService.usereventList());
+            return "index";
+        }
         if(userevent.getId()!=0){
             eventService.updateEvent(userevent);
         }else{

@@ -29,21 +29,23 @@ public class TimeDao {
     }
     public Usertime findByIdTime(int id){
         Session session = this.sessionFactory.getCurrentSession();
-        Usertime usertime = (Usertime) session.load(Usertime.class, new Integer(id));
+        Usertime usertime = (Usertime) session.get(Usertime.class, id);
         usertime.getTime();
         return usertime;
     }
     public void updateTime(Usertime usertime){
-        Session session = this.sessionFactory.getCurrentSession();
-//        Usertime usertimeUpdate= findByIdTime(usertime.getId());
-////        usertimeUpdate.setId(usertime.getId());
-//        usertimeUpdate.setDate(usertime.getDate());
-//        usertimeUpdate.setUserevents(usertime.getUserevents());
-        session.update(usertime);
+        Session session = this.sessionFactory.openSession();
+        session.beginTransaction();
+        Usertime usertimeUpdate= findByIdTime(usertime.getId());
+        usertimeUpdate.setDate(usertime.getDate());
+        session.update(usertimeUpdate);
+        session.getTransaction().commit();
+        session.flush();
+        session.close();
     }
     public List<Userevent> usereventList(int id){
         Session session = this.sessionFactory.getCurrentSession();
-        Usertime usertime = (Usertime) session.load(Usertime.class, new Integer(id));
+        Usertime usertime = (Usertime) session.get(Usertime.class, new Integer(id));
         Set<Userevent> usereventSet = new HashSet<>();
         usereventSet = usertime.getUserevents();
         List<Userevent> usereventList = new ArrayList<>(usereventSet);

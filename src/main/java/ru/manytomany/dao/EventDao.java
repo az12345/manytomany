@@ -28,25 +28,32 @@ public class EventDao {
     }
     public Userevent findEventById(int id){
         Session session = sessionFactory.getCurrentSession();
-        Userevent userevent = (Userevent) session.load(Userevent.class, new Integer(id));
+        Userevent userevent = (Userevent) session.get(Userevent.class, id);
         userevent.getName();
         return userevent;
     }
     public void updateEvent(Userevent userevent){
-        Session session = sessionFactory.getCurrentSession();
-//        Userevent usereventUpdate = findEventById(userevent.getId());
-//        usereventUpdate.setId(userevent.getId());
-//        usereventUpdate.setName(userevent.getName());
-//        usereventUpdate.setEvent(userevent.getEvent());
-//        usereventUpdate.setUsertimes(userevent.getUsertimes());
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Userevent usereventUpdate = findEventById(userevent.getId());
+
+        usereventUpdate.setName(userevent.getName());
+
+
         session.update(userevent);
+        session.getTransaction().commit();
+        session.flush();
+        session.close();
     }
     public List<Usertime> getEventTime(int id){
-        Session session = sessionFactory.getCurrentSession();
-        Userevent userevent= (Userevent ) session.load(Userevent.class, new Integer(id));
-        Set<Usertime> usertimeSet =userevent.getUsertimes();
-        List<Usertime> usertimes = new ArrayList<>(usertimeSet);
-        return usertimes;
+        Session session = sessionFactory.openSession();
+        Userevent userevent= (Userevent ) session.get(Userevent.class, new Integer(id));
+//        Set<Usertime> usertimeSet =userevent.getUsertimes();
+//        List<Usertime> usertimes = new ArrayList<>(usertimeSet);
+
+        session.flush();
+        session.close();
+        return new ArrayList<>(userevent.getUsertimes());
 
     }
 

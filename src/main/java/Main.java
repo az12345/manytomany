@@ -3,6 +3,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import ru.manytomany.model.Event;
 import ru.manytomany.model.Userevent;
 import ru.manytomany.model.Usertime;
 
@@ -40,25 +41,26 @@ public class Main {
         final Session session = getSession();
         try {
             session.beginTransaction();
-//            Userevent userevent = (Userevent) session.load(Userevent.class, new Integer(1));
-            Usertime usertime = (Usertime) session.load(Usertime.class, new Integer(1));
-//
-//            Set<Userevent> userevents = usertime.getUserevents();
-//            Set<Usertime> usertimes = userevent.getUsertimes();
-//
-//            userevents.add(userevent);
-//            usertimes.add(usertime);
-//
-//            usertime.setUserevents(userevents);
-//            userevent.setUsertimes(usertimes);
-//
-//            session.save(userevent);
-//            session.save(usertime);
+            Userevent userevent = (Userevent) session.load(Userevent.class, new Integer(6));
+            Usertime usertime = (Usertime) session.load(Usertime.class, new Integer(6));
+
+            Set<Userevent> userevents = usertime.getUserevents();
+            Set<Usertime> usertimes = userevent.getUsertimes();
+
+            userevents.add(userevent);
+            usertimes.add(usertime);
+
+            usertime.setUserevents(userevents);
+            userevent.setUsertimes(usertimes);
+
+            session.save(userevent);
+            session.save(usertime);
             Usertime usertimeUpdate= new Usertime();
             usertimeUpdate.setId(usertime.getId());
             usertimeUpdate.setDate(usertime.getDate());
             usertimeUpdate.setUserevents(usertime.getUserevents());
             session.update(usertimeUpdate);
+
 
             session.getTransaction().commit();
         } finally {

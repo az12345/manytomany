@@ -3,16 +3,23 @@ package ru.manytomany.model;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Set;
 
 @Entity
 public class Userevent {
     private int id;
     private String name;
+//    @Min(value=2, message = " more them one")
+//    @Max(value = 5, message = "litle then 5")
     private String event;
     private Set<Usertime> usertimes;
 
-    @ManyToMany(mappedBy = "userevents")
+//    @ManyToMany(mappedBy = "userevents", cascade = CascadeType.ALL)
+@ManyToMany( cascade = { CascadeType.ALL }, fetch =FetchType.EAGER)
+@JoinTable(name = "event_time", joinColumns = @JoinColumn(name = "time_id"),
+        inverseJoinColumns = @JoinColumn(name = "event_id"))
     public Set<Usertime> getUsertimes() {
         return usertimes;
     }

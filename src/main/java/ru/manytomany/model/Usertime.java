@@ -14,9 +14,9 @@ public class Usertime {
     private Date date;
     private Set<Userevent> userevents;
 
-    @ManyToMany
-    @JoinTable(name = "event_time", joinColumns = @JoinColumn(name = "id_time"),
-    inverseJoinColumns = @JoinColumn(name = "id_event"))
+    @ManyToMany( cascade = { CascadeType.ALL }, fetch =FetchType.EAGER)
+    @JoinTable(name = "event_time", joinColumns = @JoinColumn(name = "time_id"),
+    inverseJoinColumns = @JoinColumn(name = "event_id"))
     public Set<Userevent> getUserevents() {
         return userevents;
     }
