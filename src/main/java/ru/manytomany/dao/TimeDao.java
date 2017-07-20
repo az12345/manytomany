@@ -19,8 +19,12 @@ public class TimeDao {
         this.sessionFactory = sessionFactory;
     }
     public void addTime(Usertime usertime){
-        Session session = this.sessionFactory.getCurrentSession();
-        session.persist(usertime);
+        Session session = this.sessionFactory.openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(usertime);
+        session.getTransaction().commit();
+        session.flush();
+        session.close();
     }
     public List<Usertime> usertimeList(){
         Session session = this.sessionFactory.getCurrentSession();
@@ -47,9 +51,7 @@ public class TimeDao {
         Session session = this.sessionFactory.getCurrentSession();
         Usertime usertime = (Usertime) session.get(Usertime.class, new Integer(id));
         Set<Userevent> usereventSet = new HashSet<>();
-        usereventSet = usertime.getUserevents();
-        List<Userevent> usereventList = new ArrayList<>(usereventSet);
-        return usereventList;
+        return usertime.getUserevents();
 
     }
 }

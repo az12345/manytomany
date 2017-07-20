@@ -13,6 +13,7 @@ import javax.persistence.metamodel.EntityType;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -44,8 +45,8 @@ public class Main {
             Userevent userevent = (Userevent) session.load(Userevent.class, new Integer(6));
             Usertime usertime = (Usertime) session.load(Usertime.class, new Integer(6));
 
-            Set<Userevent> userevents = usertime.getUserevents();
-            Set<Usertime> usertimes = userevent.getUsertimes();
+            List<Userevent> userevents = usertime.getUserevents();
+            List<Usertime> usertimes = userevent.getUsertimes();
 
             userevents.add(userevent);
             usertimes.add(usertime);

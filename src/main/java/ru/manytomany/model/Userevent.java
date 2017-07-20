@@ -5,6 +5,7 @@ import com.sun.istack.internal.NotNull;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,17 +15,16 @@ public class Userevent {
 //    @Min(value=2, message = " more them one")
 //    @Max(value = 5, message = "litle then 5")
     private String event;
-    private Set<Usertime> usertimes;
+    private List<Usertime> usertimes;
 
-//    @ManyToMany(mappedBy = "userevents", cascade = CascadeType.ALL)
-@ManyToMany( cascade = { CascadeType.ALL }, fetch =FetchType.EAGER)
-@JoinTable(name = "event_time", joinColumns = @JoinColumn(name = "time_id"),
-        inverseJoinColumns = @JoinColumn(name = "event_id"))
-    public Set<Usertime> getUsertimes() {
+@ManyToMany(fetch = FetchType.EAGER)
+@JoinTable(name = "events_happens", joinColumns = @JoinColumn(name = "event_id"),
+        inverseJoinColumns = @JoinColumn(name = "time_id"))
+    public List<Usertime> getUsertimes() {
         return usertimes;
     }
 
-    public void setUsertimes(Set<Usertime> usertimes) {
+    public void setUsertimes(List<Usertime> usertimes) {
         this.usertimes = usertimes;
     }
 

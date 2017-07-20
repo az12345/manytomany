@@ -5,6 +5,7 @@ import com.sun.istack.internal.NotNull;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,16 +13,16 @@ public class Usertime {
     private int id;
     private Time time;
     private Date date;
-    private Set<Userevent> userevents;
+    private List<Userevent> userevents;
 
-    @ManyToMany( cascade = { CascadeType.ALL }, fetch =FetchType.EAGER)
-    @JoinTable(name = "event_time", joinColumns = @JoinColumn(name = "time_id"),
-    inverseJoinColumns = @JoinColumn(name = "event_id"))
-    public Set<Userevent> getUserevents() {
+    @ManyToMany( fetch = FetchType.EAGER)
+    @JoinTable(name = "events_happens", joinColumns = @JoinColumn(name = "time_id"),
+    inverseJoinColumns = @JoinColumn(name = "event_id", insertable = false))
+    public List<Userevent> getUserevents() {
         return userevents;
     }
 
-    public void setUserevents(Set<Userevent> userevents) {
+    public void setUserevents(List<Userevent> userevents) {
         this.userevents = userevents;
     }
 

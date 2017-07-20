@@ -10,10 +10,10 @@
 <table>
     <tr>
         <td>
-                <form action="/time/add">
-                <input type="text" name="time">
+                <form action="/time/add" method="post">
+                <input type="time" name="time" step="1">
                 <input type="date" name="date">
-                    <select name="event[0].id">
+                    <select name="userevents[0].id">
                         <option value="NONE">Select Event</option>
                         <c:forEach items="${eventlist}" var="event" varStatus="status">
 

@@ -42,7 +42,7 @@ public class MainController {
         model.addAttribute("eventlist", eventService.usereventList());
         return "index";
     }
-    @RequestMapping(value = "/time/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/time/add", method = RequestMethod.POST)
     public String addTime(@ModelAttribute Usertime usertime){
         if(usertime.getId()!=0) {
             timeService.updateTime(usertime);
