@@ -18,9 +18,16 @@ public class EventDao {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
     public void add(Userevent userevent){
-        Session session = sessionFactory.getCurrentSession();
-        session.persist(userevent);
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+            session.saveOrUpdate(userevent);
+        } finally {
+            session.getTransaction().commit();
+            session.close();
+        }
     }
     public List<Userevent> usereventList(){
         Session session = sessionFactory.getCurrentSession();
@@ -35,12 +42,10 @@ public class EventDao {
     public void updateEvent(Userevent userevent){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Userevent usereventUpdate = findEventById(userevent.getId());
-
+        Userevent usereventUpdate = (Userevent) session.get(Userevent.class, userevent.getId());
         usereventUpdate.setName(userevent.getName());
-
-
-        session.update(userevent);
+        usereventUpdate.setEvent(userevent.getEvent());
+        session.saveOrUpdate(usereventUpdate);
         session.getTransaction().commit();
         session.flush();
         session.close();
@@ -57,4 +62,20 @@ public class EventDao {
 
     }
 
+    /**
+     * Delete event model by id.
+     * @param id event id.
+     */
+    public void delete(int id) {
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+            Userevent event = new Userevent();
+            event.setId(id);
+            session.delete(event);
+        } finally {
+            session.getTransaction().commit();
+            session.close();
+        }
+    }
 }

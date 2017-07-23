@@ -32,7 +32,7 @@ public class TimeDao {
         return list;
     }
     public Usertime findByIdTime(int id){
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.openSession();
         Usertime usertime = (Usertime) session.get(Usertime.class, id);
         usertime.getTime();
         return usertime;
@@ -40,9 +40,10 @@ public class TimeDao {
     public void updateTime(Usertime usertime){
         Session session = this.sessionFactory.openSession();
         session.beginTransaction();
-        Usertime usertimeUpdate= findByIdTime(usertime.getId());
+        Usertime usertimeUpdate = (Usertime) session.get(Usertime.class, usertime.getId());
         usertimeUpdate.setDate(usertime.getDate());
-        session.update(usertimeUpdate);
+        usertimeUpdate.setTime(usertime.getTime());
+        session.saveOrUpdate(usertimeUpdate);
         session.getTransaction().commit();
         session.flush();
         session.close();

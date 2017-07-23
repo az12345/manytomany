@@ -35,4 +35,12 @@ public class EventService {
     public List<Usertime> getEventTime(int id){
          return this.eventDao.getEventTime(id);
     }
+
+    /**
+     * Delete event model.
+     * @param id event id.
+     */
+    public void delete(int id) {
+        eventDao.delete(id);
+    }
 }

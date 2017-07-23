@@ -58,18 +58,11 @@ public class MainController {
         model.addAttribute("time", timeService.findById(id));
         return "editTime";
     }
-    @RequestMapping(value = "/event/add", method = RequestMethod.GET)
-    public String addEvent(@ModelAttribute("event")Userevent userevent, BindingResult result, Model model){
-        if(result.hasErrors()){
-//            model.addAttribute("time", new Usertime());
-//            model.addAttribute("timelist", timeService.list());
-//            model.addAttribute("event", new Userevent());
-//            model.addAttribute("eventlist", eventService.usereventList());
-            return "index";
-        }
-        if(userevent.getId()!=0){
+    @RequestMapping(value = "/event/add", method = RequestMethod.POST)
+    public String addEvent(@ModelAttribute Userevent userevent){
+        if(userevent.getId() != 0){
             eventService.updateEvent(userevent);
-        }else{
+        } else{
            eventService.addEvent(userevent);
         }
         return "redirect:/";
@@ -92,5 +85,15 @@ public class MainController {
         return "eventtime";
     }
 
+    /**
+     * Delete event.
+     * @param id event id.
+     * @return redirect to index.
+     */
+    @RequestMapping(value = "/event/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id){
+        this.eventService.delete(id);
+        return "redirect:/";
+    }
 
 }

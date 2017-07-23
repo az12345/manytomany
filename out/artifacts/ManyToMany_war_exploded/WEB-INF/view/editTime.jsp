@@ -11,9 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/time/add">
-    <input type="text" name="id" value="${time.id}">
-    <input type="text" name="time" value="${time.time}">
+<form action="/time/add" method="POST">
+    <input type="hidden" name="id" value="${time.id}">
+    <input type="time" step="0" name="time" value="${time.time}">
     <input type="date" name="date" value="${time.date}">
     <input type="submit" value="EDIT">
 </form>

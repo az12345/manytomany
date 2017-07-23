@@ -11,8 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/event/add">
-    <input type="text" name="id" value="${event.id}">
+<form action="/event/add" method="post">
+    <input type="hidden" name="id" value="${event.id}">
     <input type="text" name="event" value="${event.event}">
     <input type="text" name="name" value="${event.name}">
     <input type="submit" value="add">
