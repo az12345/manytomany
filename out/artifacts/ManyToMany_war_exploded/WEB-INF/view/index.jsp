@@ -10,10 +10,10 @@
 <table>
     <tr>
         <td>
-                <form action="/time/add">
-                <input type="text" name="time">
+                <form action="/time/add" method="post">
+                <input type="time" name="time" step="1">
                 <input type="date" name="date">
-                    <select name="event[0].id">
+                    <select name="userevents[0].id">
                         <option value="NONE">Select Event</option>
                         <c:forEach items="${eventlist}" var="event" varStatus="status">
 
@@ -37,13 +37,13 @@
                 <%--</select>--%>
                 <%--<input type="submit" value="add">--%>
             <%--</form>--%>
-                <spring:form modelAttribute="event" method="get" action="/event/add">
+                <spring:form modelAttribute="event" method="POST" action="/event/add">
                     <%--<form:input type="text" name="event">--%>
                     <%--<form:input type="text" name="name">--%>
                     <spring:errors path="event" cssClass="error"></spring:errors>
                     <spring:input path="event"></spring:input>
                     <spring:input path="name"></spring:input>
-                    <select name="${time.id}">
+                    <select name="usertimes[0].id">
                         <option value="NONE">SELECT TIME</option>
                         <c:forEach items="${timelist}" var="time" varStatus="status">
 

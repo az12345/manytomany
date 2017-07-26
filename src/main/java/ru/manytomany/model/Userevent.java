@@ -12,8 +12,8 @@ import java.util.Set;
 public class Userevent {
     private int id;
     private String name;
-//    @Min(value=2, message = " more them one")
-//    @Max(value = 5, message = "litle then 5")
+  //  @Min(value=2, message = " more them one")
+   // @Max(value = 5, message = "litle then 5")
     private String event;
     private List<Usertime> usertimes;
 
