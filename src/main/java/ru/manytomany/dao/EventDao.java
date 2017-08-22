@@ -26,6 +26,7 @@ public class EventDao {
             session.saveOrUpdate(userevent);
         } finally {
             session.getTransaction().commit();
+            session.flush();
             session.close();
         }
     }

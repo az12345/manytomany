@@ -35,4 +35,8 @@ public class TimeService {
     public List<Userevent> usereventList(int id){
         return timeDao.usereventList(id);
     }
+    @Transactional
+    public void delete(int id){
+        timeDao.delete(id);
+    }
 }

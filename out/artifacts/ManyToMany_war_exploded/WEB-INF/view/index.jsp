@@ -17,7 +17,9 @@
                         <option value="NONE">Select Event</option>
                         <c:forEach items="${eventlist}" var="event" varStatus="status">
 
-                            <option value='<c:out value="${event.id}"/>'><c:out value="${event.name}"></c:out></option>
+                            <option value='<c:out value="${event.id}"/>'>
+                                <c:out value="${event.name}"></c:out>
+                            </option>
 
                         </c:forEach>
                     </select>

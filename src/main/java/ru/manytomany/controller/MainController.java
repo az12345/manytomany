@@ -91,8 +91,13 @@ public class MainController {
      * @return redirect to index.
      */
     @RequestMapping(value = "/event/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable("id") int id){
+    public String deleteEvent(@PathVariable("id") int id){
         this.eventService.delete(id);
+        return "redirect:/";
+    }
+    @RequestMapping(value = "/time/delete/{id}", method = RequestMethod.GET)
+    public String deleteTime(@PathVariable("id") int id){
+        this.timeService.delete(id);
         return "redirect:/";
     }
 

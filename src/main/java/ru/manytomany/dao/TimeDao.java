@@ -55,4 +55,16 @@ public class TimeDao {
         return usertime.getUserevents();
 
     }
+    public void delete(int id){
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            Usertime usertime = new Usertime();
+            usertime.setId(id);
+            session.delete(usertime);
+        }finally {
+            session.getTransaction().commit();
+            session.close();
+        }
+    }
 }

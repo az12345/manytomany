@@ -18,7 +18,7 @@ public class Userevent {
     private List<Usertime> usertimes;
 
 @ManyToMany(fetch = FetchType.EAGER)
-@JoinTable(name = "events_happens", joinColumns = @JoinColumn(name = "event_id"),
+@JoinTable(name = "events_happens1", joinColumns = @JoinColumn(name = "event_id"),
         inverseJoinColumns = @JoinColumn(name = "time_id"))
     public List<Usertime> getUsertimes() {
         return usertimes;

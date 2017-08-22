@@ -19,8 +19,8 @@
             <td>${time.id}</td>
             <td>${time.date}</td>
             <td>${time.time}</td>
-            <td><a href="/event/delete/${time.id}">Delete</a></td>
-            <td><a href="/event/edit/${time.id}">Edit</a> </td>
+            <td><a href="/time/delete/${time.id}">Delete</a></td>
+            <td><a href="/time/edit/${time.id}">Edit</a> </td>
         </tr>
     </c:forEach>
     <tr>
