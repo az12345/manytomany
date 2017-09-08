@@ -30,141 +30,209 @@
     <table id="24" parent="2" name="event_time"/>
     <table id="25" parent="2" name="events_happens"/>
     <table id="26" parent="2" name="events_happens1"/>
-    <table id="27" parent="2" name="userevent"/>
-    <table id="28" parent="2" name="usertime"/>
-    <column id="29" parent="24" name="id">
+    <table id="27" parent="2" name="role"/>
+    <table id="28" parent="2" name="user"/>
+    <table id="29" parent="2" name="user_role"/>
+    <table id="30" parent="2" name="userevent"/>
+    <table id="31" parent="2" name="usertime"/>
+    <column id="32" parent="24" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="30" parent="24" name="time_id">
+    <column id="33" parent="24" name="time_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="31" parent="24" name="event_id">
+    <column id="34" parent="24" name="event_id">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="32" parent="24" name="fk_time_event_eventid">
+    <index id="35" parent="24" name="fk_time_event_eventid">
       <ColNames>event_id</ColNames>
     </index>
-    <index id="33" parent="24" name="fk_time_event_timeid">
+    <index id="36" parent="24" name="fk_time_event_timeid">
       <ColNames>time_id</ColNames>
     </index>
-    <key id="34" parent="24" name="PRIMARY">
+    <key id="37" parent="24" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="35" parent="24" name="fk_time_event_timeid">
+    <foreign-key id="38" parent="24" name="fk_time_event_timeid">
       <ColNames>time_id</ColNames>
       <RefSchemaName>mytime</RefSchemaName>
       <RefTableName>usertime</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="36" parent="24" name="fk_time_event_eventid">
+    <foreign-key id="39" parent="24" name="fk_time_event_eventid">
       <ColNames>event_id</ColNames>
       <RefSchemaName>mytime</RefSchemaName>
       <RefTableName>userevent</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="37" parent="25" name="time_id">
+    <column id="40" parent="25" name="time_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="38" parent="25" name="event_id">
+    <column id="41" parent="25" name="event_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="39" parent="25" name="FK_662cov6otpoyjgbuela0h1pix">
+    <index id="42" parent="25" name="FK_662cov6otpoyjgbuela0h1pix">
       <ColNames>time_id</ColNames>
     </index>
-    <index id="40" parent="25" name="FK_ci5mthad8346bjnpw52sqxj72">
+    <index id="43" parent="25" name="FK_ci5mthad8346bjnpw52sqxj72">
       <ColNames>event_id</ColNames>
     </index>
-    <foreign-key id="41" parent="25" name="FK_662cov6otpoyjgbuela0h1pix">
+    <foreign-key id="44" parent="25" name="FK_662cov6otpoyjgbuela0h1pix">
       <ColNames>time_id</ColNames>
       <RefSchemaName>mytime</RefSchemaName>
       <RefTableName>usertime</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="42" parent="25" name="FK_ci5mthad8346bjnpw52sqxj72">
+    <foreign-key id="45" parent="25" name="FK_ci5mthad8346bjnpw52sqxj72">
       <ColNames>event_id</ColNames>
       <RefSchemaName>mytime</RefSchemaName>
       <RefTableName>userevent</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="43" parent="26" name="time_id">
+    <column id="46" parent="26" name="time_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="44" parent="26" name="event_id">
+    <column id="47" parent="26" name="event_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="45" parent="26" name="FK_clkcnhffgnp2frcvys6cwt5ol">
+    <index id="48" parent="26" name="FK_clkcnhffgnp2frcvys6cwt5ol">
       <ColNames>time_id</ColNames>
     </index>
-    <index id="46" parent="26" name="FK_ftjnw0c02oj4e14xumwqx294y">
+    <index id="49" parent="26" name="FK_ftjnw0c02oj4e14xumwqx294y">
       <ColNames>event_id</ColNames>
     </index>
-    <foreign-key id="47" parent="26" name="FK_clkcnhffgnp2frcvys6cwt5ol">
+    <foreign-key id="50" parent="26" name="FK_clkcnhffgnp2frcvys6cwt5ol">
       <ColNames>time_id</ColNames>
       <RefSchemaName>mytime</RefSchemaName>
       <RefTableName>usertime</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="48" parent="26" name="FK_ftjnw0c02oj4e14xumwqx294y">
+    <foreign-key id="51" parent="26" name="FK_ftjnw0c02oj4e14xumwqx294y">
       <ColNames>event_id</ColNames>
       <RefSchemaName>mytime</RefSchemaName>
       <RefTableName>userevent</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="49" parent="27" name="id">
+    <column id="52" parent="27" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="50" parent="27" name="event">
+    <column id="53" parent="27" name="role">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="51" parent="27" name="name">
+    <key id="54" parent="27" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="55" parent="28" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="56" parent="28" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="57" parent="28" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="52" parent="27" name="photo">
+    <key id="58" parent="28" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="59" parent="29" name="id_user">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="29" name="id_role">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="61" parent="29" name="FK_qibq3rh7mo4f8372yxkn549j7">
+      <ColNames>id_user</ColNames>
+    </index>
+    <key id="62" parent="29" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id_role
+id_user</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="63" parent="29" name="FK_qibq3rh7mo4f8372yxkn549j7">
+      <ColNames>id_user</ColNames>
+      <RefSchemaName>mytime</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="64" parent="29" name="FK_56olsq329osn3lxem8ftn9q9h">
+      <ColNames>id_role</ColNames>
+      <RefSchemaName>mytime</RefSchemaName>
+      <RefTableName>role</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="65" parent="30" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="66" parent="30" name="event">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="67" parent="30" name="name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="68" parent="30" name="photo">
       <Position>4</Position>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <key id="53" parent="27" name="PRIMARY">
+    <key id="69" parent="30" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="54" parent="28" name="id">
+    <column id="70" parent="31" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="55" parent="28" name="date">
+    <column id="71" parent="31" name="date">
       <Position>2</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="56" parent="28" name="time">
+    <column id="72" parent="31" name="time">
       <Position>3</Position>
       <DataType>time|0</DataType>
     </column>
-    <key id="57" parent="28" name="PRIMARY">
+    <key id="73" parent="31" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

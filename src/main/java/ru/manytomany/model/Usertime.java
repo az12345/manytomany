@@ -1,5 +1,6 @@
 package ru.manytomany.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
@@ -13,8 +14,9 @@ public class Usertime {
     private int id;
     private Time time;
     private Date date;
-    private List<Userevent> userevents;
 
+    private List<Userevent> userevents;
+    @JsonIgnore
     @ManyToMany( fetch = FetchType.EAGER)
     @JoinTable(name = "events_happens1", joinColumns = @JoinColumn(name = "time_id"),
     inverseJoinColumns = @JoinColumn(name = "event_id"))
